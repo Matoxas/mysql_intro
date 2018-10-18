@@ -2,5 +2,5 @@
 
 select n.newsId newsId, n.date newsDate, n.text newsText, c.date commentDate, c.commentText commentText
 from (select * from news order by date desc limit 10) n
-left join (select * from comments order by date desc limit 1) c
-on c.newsId = n.newsId;
+left join (select newsId from comments where newsId=n.newsId order by id DESC LIMIT 1) c
+on (n.newsId=c.newsId);
